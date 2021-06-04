@@ -1,3 +1,4 @@
 <properties>
 	<property id="useDirectTFL" type="boolean">false</property>
+	<property id="useMunich" type="boolean">true</property>
 </properties>

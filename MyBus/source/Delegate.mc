@@ -21,8 +21,10 @@ class Delegate extends Ui.BehaviorDelegate {
 		// Create a request instance so that we can handle
 		// request and responses to the city's specific API
 		var api_pref = App.getApp().getProperty("useDirectTFL");
-		System.println(api_pref);
-		if (api_pref == true) {
+		var munich_pref = App.getApp().getProperty("useMunich");
+		if (munich_pref == true) {
+			APIRequestInstance = new MunichRequestAPI(handler);	
+		} else if (api_pref == true) {
 			APIRequestInstance = new TFLRequestAPI(handler);
 		} else {
 			APIRequestInstance = new GmmybusRequestAPI(handler);

@@ -93,7 +93,17 @@ class APIRequest {
 
 		var options;
 		var api_pref = App.getApp().getProperty("useDirectTFL");
-		if (api_pref == true) {
+		var munich_pref = App.getApp().getProperty("useMunich");
+
+		if (munich_pref == true) {
+			options = {
+				:method => Communications.HTTP_REQUEST_METHOD_GET,
+				:headers => {
+						"Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
+				},
+				:responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
+			};
+		} else if (api_pref == true) {
 			options = {
 				:method => Communications.HTTP_REQUEST_METHOD_GET,
 				:headers => {
