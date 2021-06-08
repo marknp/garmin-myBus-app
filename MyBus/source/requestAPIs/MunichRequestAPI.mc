@@ -137,7 +137,7 @@ class MunichRequestAPI extends APIRequest {
 
 	function getSelectedStop() {
 		for(var i = 0; i < availableStops.size(); i ++) {
-			if (availableStops[i]["name"] == selectedStop) {
+			if (availableStops[i]["name"].equals(selectedStop)) {
 				return  availableStops[i];
 			}
 		}
@@ -185,7 +185,7 @@ class MunichRequestAPI extends APIRequest {
 		var oepnvDepartures = {};
 		for(var i = 0; i < data.size(); i ++) {
 			var destination = data[i]["destination"].toString();
-			var destinationShort = (destination.find(" ") != null) ? destination.substring(0, destination.find(" ")) : destination;
+			var destinationShort = destination; // (destination.find(" ") != null) ? destination.substring(0, destination.find(" ")) : destination;
 			var transportLine = data[i]["label"].toString();
 			var transportLabel = transportLine + " " +  destinationShort;	
 

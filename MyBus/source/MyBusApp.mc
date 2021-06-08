@@ -20,11 +20,14 @@ class MyBusApp extends App.AppBase {
 	function getInitialView() {
 		mView = new View();
 		positionView = new Delegate(mView.method(:onReceive));
+	
+		var currentPosition = Position.getInfo();
+		positionView.setPosition(currentPosition);
 		return [mView, positionView];
 	}
 
-	function onStart(state) {
-		Position.enableLocationEvents(Position.LOCATION_CONTINUOUS, method(:onPosition));
+	function onStart(state) {	
+		Position.enableLocationEvents(Position.LOCATION_ONE_SHOT, method(:onPosition));
 	}
 
 	function onStop(state) {
