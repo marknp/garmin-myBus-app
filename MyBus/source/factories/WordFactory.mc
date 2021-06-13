@@ -8,13 +8,16 @@ using Toybox.WatchUi as Ui;
 * Picked up by the SDK samples.
 */
 class WordFactory extends Ui.PickerFactory {
-	var mWords;
+	var mWords = [];
 	var mFont;
 
 	function initialize(words, options) {
 		PickerFactory.initialize();
 
-		mWords = words;
+		for (var i = 0; i<words.size(); i++){
+			mWords.add(breakLine(words[i]));
+		}
+
 
 		if(options != null) {
 			mFont = options.get(:font);
@@ -22,6 +25,17 @@ class WordFactory extends Ui.PickerFactory {
 
 		if(mFont == null) {
 			mFont = Gfx.FONT_LARGE;
+		}
+	}
+
+	function breakLine(word) {
+		// TODO: alternatively break after 10 characters
+		var indexOfSpace = word.find(" ");
+		if (indexOfSpace == null){
+			return word;
+		} else {
+			var endBroken = breakLine(word.substring(indexOfSpace + 1, word.length()));
+			return word.substring(0, indexOfSpace) + "\n"	+ endBroken;
 		}
 	}
 
@@ -34,6 +48,6 @@ class WordFactory extends Ui.PickerFactory {
 	}
 
 	function getDrawable(index, selected) {
-		return new Ui.Text({:text=>mWords[index], :color=>Gfx.COLOR_WHITE, :font=>mFont, :locX=>Ui.LAYOUT_HALIGN_CENTER, :locY=>Ui.LAYOUT_VALIGN_CENTER});
+		return new Ui.Text({:text=>mWords[index], :color=>Gfx.COLOR_WHITE, :font=>mFont, :locX=>Ui.LAYOUT_HALIGN_LEFT, :locY=>Ui.LAYOUT_VALIGN_CENTER, :width=>200});
 	}
 }
