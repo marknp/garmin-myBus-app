@@ -11,7 +11,7 @@ using Toybox.WatchUi as Ui;
 class MyBusApp extends App.AppBase {
 
 	var positionView;
-	hidden var mView;
+	var mView;
 
 	function initialize() {
 		AppBase.initialize();

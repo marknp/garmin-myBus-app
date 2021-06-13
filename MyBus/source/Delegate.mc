@@ -34,6 +34,20 @@ class Delegate extends Ui.BehaviorDelegate {
 	function onMenu() {
 		return true;
 	}
+	
+
+	// Input Delegate
+	function onNextPage() {
+		App.getApp().mView.scrollUp();
+		return true;
+	}
+
+	function onPreviousPage() {
+		App.getApp().mView.scrollDown();
+		return true;
+	}
+
+
 
 	function onSelect() {
 		if( posnInfo != null ) {
