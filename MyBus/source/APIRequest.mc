@@ -145,12 +145,12 @@ class APIRequest {
 			// of the subclass (i.e TFLRequestApi) and works out the information.
 			var responseInfo = method(stopsCallback).invoke(data);
 
-			var stopNames = responseInfo["stopNames"];
+			var stops = responseInfo["stops"];
 			var error = responseInfo["error"];
 
-			if (error == null && stopNames != null) {
+			if (error == null && stops != null) {
 				// We have a stops list. Create a picker with these stops
-				Ui.pushView(new StopsPicker(stopNames), new StopsPickerDelegate(self), Ui.SLIDE_IMMEDIATE);
+				Ui.pushView(new StopsMenu(stops), new StopsMenuDelegate(self), Ui.SLIDE_IMMEDIATE);
 			} else {
 				notify.invoke(error);
 			}

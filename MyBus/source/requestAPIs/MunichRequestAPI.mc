@@ -81,13 +81,7 @@ class MunichRequestAPI extends APIRequest {
 
 		var stopNames = [];
 		if (availableStops.size() > 0) {
-			for(var i = 0; i < availableStops.size(); i ++) {
-				var stop = availableStops[i]["name"];
-				if (stop != null) {
-					stopNames.add(stop);
-				}
-			}
-			responseInfo["stopNames"] = stopNames;
+			responseInfo["stops"] = availableStops;
 		} else {
 			responseInfo["error"] = "No stops around";
 		}
