@@ -9,7 +9,12 @@ using Toybox.Graphics as Gfx;
 */
 class StopsPicker extends Ui.Picker {
 
-	function initialize(stopNames) {
+	function initialize(stops) {
+		var stopNames = [];
+		for (var i=0; i<stops.size(); i++){
+			stopNames.add(stops[i]["name"]);
+		}
+
 		var title = "Select stop";
 		var ttl = new Ui.Text({:text=>title, :locX =>Ui.LAYOUT_HALIGN_CENTER, :locY=>Ui.LAYOUT_VALIGN_CENTER, :color=>Gfx.COLOR_BLUE, :font=>Gfx.FONT_TINY});
 		var factory = new WordFactory(stopNames, {:font=>Gfx.FONT_SMALL});
@@ -58,7 +63,7 @@ class StopsPickerDelegate {
 			return word;
 		} else {
 			var endBroken = unBreakLine(word.substring(indexOfSpace + 1, word.length()));
-			return word.substring(0, indexOfSpace) + " " + endBroken;
+			return word.substring(0, indexOfSpace) + endBroken;
 		}
 	}
 }

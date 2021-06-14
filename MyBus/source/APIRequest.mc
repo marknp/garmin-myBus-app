@@ -150,7 +150,14 @@ class APIRequest {
 
 			if (error == null && stops != null) {
 				// We have a stops list. Create a picker with these stops
-				Ui.pushView(new StopsMenu(stops), new StopsMenuDelegate(self), Ui.SLIDE_IMMEDIATE);
+				
+				if (System.getDeviceSettings().monkeyVersion[0]>= 3) {
+					// on venu sqm
+					Ui.pushView(new StopsMenu(stops), new StopsMenuDelegate(self), Ui.SLIDE_IMMEDIATE);
+				} else {
+					// on forerunner 735xt
+					Ui.pushView(new StopsPicker(stops), new StopsPickerDelegate(self), Ui.SLIDE_IMMEDIATE);
+				}
 			} else {
 				notify.invoke(error);
 			}

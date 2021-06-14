@@ -15,7 +15,7 @@ class WordFactory extends Ui.PickerFactory {
 		PickerFactory.initialize();
 
 		for (var i = 0; i<words.size(); i++){
-			mWords.add(breakLine(words[i]));
+			mWords.add(breakLatestAt(words[i]));
 		}
 
 
@@ -28,15 +28,15 @@ class WordFactory extends Ui.PickerFactory {
 		}
 	}
 
-	function breakLine(word) {
-		// TODO: alternatively break after 10 characters
-		var indexOfSpace = word.find(" ");
-		if (indexOfSpace == null){
-			return word;
-		} else {
-			var endBroken = breakLine(word.substring(indexOfSpace + 1, word.length()));
-			return word.substring(0, indexOfSpace) + "\n"	+ endBroken;
+	function breakLatestAt(word){
+		var len = 7;
+		var broken = "";
+		for (var i =0; i<=word.length()/len; i++) {
+			broken = broken + word.substring(i*len, i*len+len) + "\n";
 		}
+		var returns = broken.substring(0, broken.length()-1);
+		System.println(returns);
+		return returns;
 	}
 
 	function getSize() {
