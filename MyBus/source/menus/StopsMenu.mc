@@ -15,7 +15,7 @@ class StopsMenu extends Ui.Menu2 {
 			addItem(
 				new Ui.MenuItem(
 				stop["name"],
-				stop["products"].toString(),
+				stop["distance"] + "m " + stop["products"].toString(),
 				stop["id"],
 				{}
 				)
@@ -28,8 +28,6 @@ class StopsMenuDelegate {
 	var APIRequestInstance;
 
 	function initialize(instance) {
-		System.println("init d");
-
 		// Allow the picker to access the request instance
 		APIRequestInstance = instance;
 	}
